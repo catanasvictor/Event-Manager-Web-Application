@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragmentsUsers :: head"></head>
+<body class="container">
+
+<nav th:replace="fragmentsUsers :: navigation"></nav>
+
+<form method="post">
+    <div class="form-group">
+        <label>Old Username
+            <input th:field="${user.userName}" class="form-control">
+        </label>
+    </div>
+
+    <div class="form-group">
+        <label>New Password
+            <input type="password" th:field="${user.password}" class="form-control">
+        </label>
+    </div>
+
+    <div class="form-group">
+        <label>New Role
+            <select th:field="${user.userCategory}" class="form-control">
+                <option th:each="userCategory : ${userCategories}"
+                        th:value="${userCategory}"
+                        th:text="${userCategory.name}"
+                ></option>
+            </select>
+            <p class="error" th:errors="${user.userCategory}"></p>
+        </label>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Update" class="btn btn-primary">
+    </div>
+
+</form>
+
+</body>
+</html>
